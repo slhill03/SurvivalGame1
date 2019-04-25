@@ -4,13 +4,14 @@ function love.load()
 backround = love.graphics.newImage("backround.png")
 nuke = love.graphics.newImage("nuke.png")
 sprite = love.graphics.newImage("sprite1.png")
-x = 100
+x = 330
 y = 200
 t = -250
 v = love.math.random(0, 700)
 health = 100
 font = love.graphics.newFont(20)
   love.graphics.setFont(font)
+
 end
 ------------------------------------------------------------------------------
 function love.update()
@@ -36,7 +37,7 @@ end
 function love.draw()
   love.graphics.print(health,-1,20)
   love.graphics.print("Health:")
---love.graphics.draw(backround,0,0,0,1,.75)
+love.graphics.draw(backround,0,0,0,1,.75)
 love.graphics.draw(sprite,x,y)
 love.graphics.draw(nuke,v,t)
 --love.graphics.print(x, 0, 0)
