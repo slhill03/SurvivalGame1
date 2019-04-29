@@ -13,6 +13,7 @@ health = 100
 font = love.graphics.newFont(20)
   love.graphics.setFont(font)
  time = love.timer.getTime()
+ score = 0
 end
 ------------------------------------------------------------------------------
 function love.update()
@@ -30,7 +31,7 @@ end
 if love.keyboard.isDown('d') then
   x = x + 10
 end
-t = t + 5
+t = t + 10
 
 if health == 0
 then love.event.quit()
@@ -40,18 +41,26 @@ if cc(x, y, 117, 288, v, t, 144, 189) then
   health = health - 1
 end
 
+if t > 600
+then t = -250
+v = love.math.random(0, 700)
+ end
 
+if love.timer.getTime() - time > 1
+then score = score + 1
+end
 
 end
 ------------------------------------------------------------------------------
 function love.draw()
   love.graphics.print(health,-1,20)
-  love.graphics.print("Health:")
+  love.graphics.print("Health")
 --love.graphics.draw(backround2,0,0,0,1,.75)
 love.graphics.draw(sprite,x,y)
 love.graphics.draw(nuke,v,t)
-
---love.graphics.print(x, 0, 0)
+love.graphics.print(score, 730,25)
+love.graphics.print("Score" ,740,2)
+--love.graphics.print(x, 200, 200)
 --if love.timer.getTime() - time < 30 then  --change time
    --love.graphics.draw(backround1,0,0,0,1,.75)
  --else
