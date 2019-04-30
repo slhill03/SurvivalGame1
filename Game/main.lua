@@ -46,6 +46,14 @@ then t = -250
 v = love.math.random(0, 700)
  end
 
+if x < -140
+ then x = 830
+ end
+
+ if x > 830
+  then x = -140
+  end
+
 if love.timer.getTime() - time > 1
 then score = score + 1
 end
@@ -60,7 +68,7 @@ love.graphics.draw(sprite,x,y)
 love.graphics.draw(nuke,v,t)
 love.graphics.print(score, 730,25)
 love.graphics.print("Score" ,740,2)
---love.graphics.print(x, 200, 200)
+love.graphics.print(x, 200, 200)
 --if love.timer.getTime() - time < 30 then  --change time
    --love.graphics.draw(backround1,0,0,0,1,.75)
  --else
@@ -90,3 +98,4 @@ function cc(x1,y1,w1,h1, x2,y2,w2,h2)
          y1 < y2+h2 and
          y2 < y1+h1
 end
+------------------------------------------------------------------------------
