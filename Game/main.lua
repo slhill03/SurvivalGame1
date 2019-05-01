@@ -14,6 +14,9 @@ font = love.graphics.newFont(20)
   love.graphics.setFont(font)
  time = love.timer.getTime()
  score = 0
+ music = love.audio.newSource("deltarunepianotheme.mp3", "stream")
+ music:setLooping(true)
+  music:play()
 end
 ------------------------------------------------------------------------------
 function love.update()
@@ -39,24 +42,26 @@ end
 
 if cc(x, y, 117, 288, v, t, 144, 189) then
   health = health - 1
-end
+end                            --hitboxes collide, health goes down
 
 if t > 600
 then t = -250
 v = love.math.random(0, 700)
- end
+end                             --redraws nuke
 
 if x < -140
  then x = 830
- end
+ end                  --wrap around
 
  if x > 830
   then x = -140
-  end
+  end                --wrap around
 
 if love.timer.getTime() - time > 1
 then score = score + 1
 end
+
+
 
 end
 ------------------------------------------------------------------------------
@@ -68,19 +73,25 @@ love.graphics.draw(sprite,x,y)
 love.graphics.draw(nuke,v,t)
 love.graphics.print(score, 730,25)
 love.graphics.print("Score" ,740,2)
-love.graphics.print(x, 200, 200)
---if love.timer.getTime() - time < 30 then  --change time
-   --love.graphics.draw(backround1,0,0,0,1,.75)
+--love.graphics.print(x, 200, 200)
+
+--lore
+--if love.timer.getTime() - time < 10
+ --then love.graphics.print("Destrucion.",200,300)
  --else
- --if love.timer.getTime() - time < 100 then  --change time
-  --love.graphics.draw(backround2,0,0,0,1,.75)
---end
---end
+ --if love.timer.getTime() - time < 20
+  --then love.graphics.print("Are you there?",300,400)
+  --else
+    --if love.timer.getTime() - time < 30
+     --then love.graphics.print("Break free.",500,500)
+     --end
+  --end
+  --end
+
+
 
 
 end
-
-
 ------------------------------------------------------------------------------
 function love.keyreleased(key)
    if key == "escape" then
@@ -89,6 +100,9 @@ function love.keyreleased(key)
    if key == 'space' then
      love.load()
    end
+   if key == 'p'
+ then love.audio.pause()
+   end
  end
 ------------------------------------------------------------------------------
 
@@ -96,6 +110,6 @@ function cc(x1,y1,w1,h1, x2,y2,w2,h2)
   return x1 < x2+w2 and
          x2 < x1+w1 and
          y1 < y2+h2 and
-         y2 < y1+h1
+         y2 < y1+h1     --hitboxes
 end
 ------------------------------------------------------------------------------
