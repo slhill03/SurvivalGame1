@@ -3,6 +3,7 @@
 function love.load()
 backround1 = love.graphics.newImage("screen1.png")
 backround2 = love.graphics.newImage("screen2resize.png")
+--falloutbackround = love.graphics.newImage("Fallout-landscape.jpg")
 nuke = love.graphics.newImage("nuke.png")
 sprite = love.graphics.newImage("sprite1.png")
 x = 330
@@ -21,20 +22,19 @@ end
 ------------------------------------------------------------------------------
 function love.update()
 
-
 if love.keyboard.isDown('right') then
-  x = x + 10
+  x = x + 12
 end
 if love.keyboard.isDown('a') then
-  x = x - 10
+  x = x - 12
 end
 if love.keyboard.isDown('left') then
-  x = x - 10
+  x = x - 12
 end
 if love.keyboard.isDown('d') then
-  x = x + 10
+  x = x + 12
 end
-t = t + 10
+t = t + 12
 
 if health == 0
 then love.event.quit()
@@ -66,27 +66,16 @@ end
 end
 ------------------------------------------------------------------------------
 function love.draw()
+  
   love.graphics.print(health,-1,20)
   love.graphics.print("Health")
---love.graphics.draw(backround2,0,0,0,1,.75)
+--love.graphics.draw(falloutbackround,0,0,0,1,.45)
 love.graphics.draw(sprite,x,y)
 love.graphics.draw(nuke,v,t)
 love.graphics.print(score, 730,25)
 love.graphics.print("Score" ,740,2)
---love.graphics.print(x, 200, 200)
+love.graphics.print(x, 200, 200)
 
---lore
---if love.timer.getTime() - time < 10
- --then love.graphics.print("Destrucion.",200,300)
- --else
- --if love.timer.getTime() - time < 20
-  --then love.graphics.print("Are you there?",300,400)
-  --else
-    --if love.timer.getTime() - time < 30
-     --then love.graphics.print("Break free.",500,500)
-     --end
-  --end
-  --end
 
 
 
@@ -97,12 +86,16 @@ function love.keyreleased(key)
    if key == "escape" then
       love.event.quit()
    end
-   if key == 'space' then
-     love.load()
+   if key == "space" then
+    love.load()
    end
    if key == 'p'
  then love.audio.pause()
    end
+   if key == 'q'
+   then music:play();
+   end
+
  end
 ------------------------------------------------------------------------------
 
