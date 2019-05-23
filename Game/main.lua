@@ -1,11 +1,10 @@
 
 ------------------------------------------------------------------------------
 function love.load()
-backround1 = love.graphics.newImage("screen1.png")
-backround2 = love.graphics.newImage("screen2resize.png")
---falloutbackround = love.graphics.newImage("Fallout-landscape.jpg")
-nuke = love.graphics.newImage("nuke.png")
-sprite = love.graphics.newImage("sprite1.png")
+obstacle = love.graphics.newImage("piranha.png")
+obstacle2 = love.graphics.newImage("placeholder")
+sprite = love.graphics.newImage("Mario 8 bit.png")
+sprite2 = love.graphics.newImage("Luigi 8 bit.png")
 x = 330
 y = 200
 t = -250
@@ -66,12 +65,11 @@ end
 end
 ------------------------------------------------------------------------------
 function love.draw()
-  
-  love.graphics.print(health,-1,20)
-  love.graphics.print("Health")
---love.graphics.draw(falloutbackround,0,0,0,1,.45)
+
+love.graphics.print(health,-1,20)
+love.graphics.print("Health")
 love.graphics.draw(sprite,x,y)
-love.graphics.draw(nuke,v,t)
+love.graphics.draw(obstacle,v,t)
 love.graphics.print(score, 730,25)
 love.graphics.print("Score" ,740,2)
 love.graphics.print(x, 200, 200)
