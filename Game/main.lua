@@ -2,13 +2,18 @@
 ------------------------------------------------------------------------------
 function love.load()
 obstacle = love.graphics.newImage("piranha.png")
---obstacle2 = love.graphics.newImage("placeholder")
+obstacle2 = love.graphics.newImage("Thwomp.png")
 sprite = love.graphics.newImage("Mario 8 bit.png")
 sprite2 = love.graphics.newImage("Luigi 8 bit.png")
 x = 330
 y = 400
+
 t = -250
 v = love.math.random(0, 700)
+
+s = -250
+a = love.math.random(0,700)
+
 health = 100
 font = love.graphics.newFont(20)
   love.graphics.setFont(font)
@@ -33,7 +38,9 @@ end
 if love.keyboard.isDown('d') then
   x = x + 12
 end
+
 t = t + 13
+s = s + 7
 
 if health == 0
 then love.event.quit()
@@ -41,12 +48,21 @@ end
 
 if cc(x, y, 117, 288, v, t, 144, 189) then
   health = health - 1
-end                            --hitboxes collide, health goes down
+end
+--hitboxes
+if cc(x,y, 117, 288, s, a, 144, 189) then
+  health = health -1
+end                            --fix
 
 if t > 600
 then t = -250
 v = love.math.random(0, 700)
-end                             --redraws nuke
+end
+   --redraws obstacles
+   if s > 600
+   then s = -250
+   a = love.math.random(0, 700)
+   end
 
 if x < -140
  then x = 830
@@ -69,7 +85,8 @@ function love.draw()
 love.graphics.print(health,-1,20)
 love.graphics.print("Health")
 love.graphics.draw(sprite,x,y,0,1)
-love.graphics.draw(obstacle,v,t,0,1.5)
+--love.graphics.draw(obstacle,v,t,0,1.5)
+love.graphics.draw(obstacle2,a,s,0,1.5)
 love.graphics.print(score, 730,25)
 love.graphics.print("Score" ,740,2)
 --love.graphics.print(x, 200, 200)
