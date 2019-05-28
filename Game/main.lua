@@ -19,7 +19,7 @@ font = love.graphics.newFont(20)
   love.graphics.setFont(font)
  time = love.timer.getTime()
  score = 0
- -- music = love.audio.newSource("supermariobros3remix.wav", "stream")
+ -- music = love.audio.newSource("", "stream")
  -- music:setLooping(true)
  --  music:play()
 end
@@ -39,18 +39,18 @@ if love.keyboard.isDown('d') then
   x = x + 12
 end
 
-t = t + 13
-s = s + 7
+t = t + 10
+s = s + 5
 
 if health == 0
 then love.event.quit()
 end
 
-if cc(x, y, 117, 288, v, t, 144, 189) then
+if cc(x, y, 100, 123, v, t, 97, 100) then
   health = health - 1
 end
 --hitboxes
-if cc(x,y, 117, 288, s, a, 144, 189) then
+if cc(x,y, 100, 123, s, a, 104, 108) then
   health = health -1
 end                            --fix
 
@@ -85,14 +85,14 @@ function love.draw()
 love.graphics.print(health,-1,20)
 love.graphics.print("Health")
 love.graphics.draw(sprite,x,y,0,1)
---love.graphics.draw(obstacle,v,t,0,1.5)
-love.graphics.draw(obstacle2,a,s,0,1.5)
+love.graphics.draw(obstacle,v,t)
+love.graphics.draw(obstacle2,a,s)
 love.graphics.print(score, 730,25)
 love.graphics.print("Score" ,740,2)
 --love.graphics.print(x, 200, 200)
-
-
-
+love.graphics.rectangle('line',a, s, 104, 108)
+love.graphics.rectangle('line',v, t, 97, 100)
+love.graphics.rectangle('line',x, y, 100, 123)
 
 
 end
