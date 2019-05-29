@@ -3,8 +3,10 @@
 function love.load()
 obstacle = love.graphics.newImage("piranha.png")
 obstacle2 = love.graphics.newImage("Thwomp.png")
+obstacle3 = love.graphics.newImage("goomba.png")
 sprite = love.graphics.newImage("Mario 8 bit.png")
 sprite2 = love.graphics.newImage("Luigi 8 bit.png")
+background = love.graphics.newImage("test.png")
 x = 330
 y = 400
 
@@ -14,33 +16,36 @@ v = love.math.random(0, 700)
 s = -250
 a = love.math.random(0,700)
 
+g = -250
+o = love.math.random(0,700)
+
 health = 100
 font = love.graphics.newFont(20)
   love.graphics.setFont(font)
  time = love.timer.getTime()
  score = 0
- -- music = love.audio.newSource("", "stream")
- -- music:setLooping(true)
- --  music:play()
+ music = love.audio.newSource("music.mp3", "stream")
+ music:setLooping(true)
+  music:play()
 end
 ------------------------------------------------------------------------------
 function love.update()
 
 if love.keyboard.isDown('right') then
-  x = x + 12
+  x = x + 14
 end
 if love.keyboard.isDown('a') then
-  x = x - 12
+  x = x - 14
 end
 if love.keyboard.isDown('left') then
-  x = x - 12
+  x = x - 14
 end
 if love.keyboard.isDown('d') then
-  x = x + 12
+  x = x + 14
 end
 
-t = t + 10
-s = s + 5
+t = t + 13
+s = s + 8
 
 if health == 0
 then love.event.quit()
@@ -50,7 +55,7 @@ if cc(x, y, 100, 123, v, t, 97, 100) then
   health = health - 1
 end
 --hitboxes
-if cc(x,y, 100, 123, s, a, 104, 108) then
+if cc(x,y, 100, 123, a, s, 104, 108) then
   health = health -1
 end                            --fix
 
@@ -81,7 +86,7 @@ end
 end
 ------------------------------------------------------------------------------
 function love.draw()
-
+love.graphics.draw(background,0,0,0,1.35)
 love.graphics.print(health,-1,20)
 love.graphics.print("Health")
 love.graphics.draw(sprite,x,y,0,1)
@@ -89,7 +94,7 @@ love.graphics.draw(obstacle,v,t)
 love.graphics.draw(obstacle2,a,s)
 love.graphics.print(score, 730,25)
 love.graphics.print("Score" ,740,2)
---love.graphics.print(x, 200, 200)
+love.graphics.print(x, 200, 200)
 love.graphics.rectangle('line',a, s, 104, 108)
 love.graphics.rectangle('line',v, t, 97, 100)
 love.graphics.rectangle('line',x, y, 100, 123)
