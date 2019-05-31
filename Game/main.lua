@@ -1,5 +1,5 @@
 
-------------------------------------------------------------------------------
+
 function love.load()
   obstacle = love.graphics.newImage("piranha.png")
   obstacle2 = love.graphics.newImage("Thwomp.png")
@@ -11,17 +11,16 @@ function love.load()
   x = 330
   y = 400
   z = 0
-  e = "10,000 Points Surpassed!"
-  --
+
   t = -250
   v = love.math.random(0, 700)
-  --
+
   s = -250
   a = love.math.random(0, 700)
-  --
+
   g = -250
   o = love.math.random(0, 700)
-  --
+
   h = -250
   e = love.math.random(0, 700)
 
@@ -34,7 +33,7 @@ function love.load()
   music:setLooping(true)
   music:play()
 end
-------------------------------------------------------------------------------
+
 function love.update()
 
   if love.keyboard.isDown('right') then
@@ -50,12 +49,15 @@ function love.update()
     x = x + 14
   end
 
-  t = t + 13
-  s = s + 5
-  g = g + 7
-  h = h + 5
+  t = t + 15
+  s = s + 7
+  g = g + 9
+  h = h + 3
 
 if health < 0
+then love.event.quit()
+end  --glitch repair
+if score < 0
 then love.event.quit()
 end
 
@@ -66,11 +68,11 @@ end
 if cc(x, y, 100, 123, a, s, 104, 108) then
   health = health - 1
 end
---
+
 if cc(x, y, 100, 123, o, g, 64, 52) then
   health = health - 1
 end
---
+
 if cc(x, y, 100, 123, e, h, 64, 64) then
   if health < 100 then
     health = health + .5
@@ -90,12 +92,12 @@ if s > 600
 then s = -250
 a = love.math.random(0, 700)
 end
---
+
 if g > 600
 then g = -250
 o = love.math.random(0, 700)
 end
---
+
 
 if h > 600
 then h = -250
@@ -121,7 +123,7 @@ end
 
 
 end
-------------------------------------------------------------------------------
+
 function love.draw()
 love.graphics.draw(background, 0, 0, 0, 1.35)
 love.graphics.print(health, - 1, 20)
@@ -134,26 +136,26 @@ love.graphics.draw(obstacle3, o, g)
 love.graphics.print(score, 730, 25)
 love.graphics.print("Score", 740, 2)
 -- love.graphics.print(x, 200, 200)
-love.graphics.print(z,375,20)
 love.graphics.print("HP Recovered/Points Deducted", 250,1)
-love.graphics.rectangle('line', a, s, 104, 108)
-love.graphics.rectangle('line', v, t, 97, 100)
-love.graphics.rectangle('line', x, y, 100, 123)
-love.graphics.rectangle('line', o, g, 64, 64)
-love.graphics.rectangle('line', e, h, 64, 64)
+love.graphics.print(z,375,20)
+-- love.graphics.rectangle('line', a, s, 104, 108)
+-- love.graphics.rectangle('line', v, t, 97, 100)
+-- love.graphics.rectangle('line', x, y, 100, 123)
+-- love.graphics.rectangle('line', o, g, 64, 64)
+-- love.graphics.rectangle('line', e, h, 64, 64)
 
 
 
 
 end
-------------------------------------------------------------------------------
+
 function love.keyreleased(key)
 if key == "escape" then
 love.event.quit()
 end
-if key == "space" then
-love.load()
-end
+-- if key == "space" then
+-- love.load()
+-- end
 if key == 'p'
 then love.audio.pause()
 end
@@ -162,7 +164,7 @@ then music:play();
 end
 
 end
-------------------------------------------------------------------------------
+
 
 function cc(x1, y1, w1, h1, x2, y2, w2, h2)
 return x1 < x2 + w2 and
@@ -170,4 +172,3 @@ x2 < x1 + w1 and
 y1 < y2 + h2 and
 y2 < y1 + h1 --hitboxes
 end
-------------------------------------------------------------------------------
