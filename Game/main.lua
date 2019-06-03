@@ -1,6 +1,63 @@
-
+state = 'start'
 
 function love.load()
+  if state == 'start' then
+    startload()
+  elseif state == 'game' then
+    gameload()
+  end
+end
+
+
+function love.update(dt)
+  if state == 'start' then
+    startupdate(dt)
+  elseif state == 'game' then
+    gameupdate(dt)
+  end
+end
+
+
+function love.draw()
+  if state == 'start' then
+    startdraw()
+  elseif state == 'game' then
+    gamedraw()
+  end
+end
+
+
+
+function startload()
+  start = love.graphics.newImage("teststartscreen.PNG")
+end
+music = love.audio.newSource("starttheme.mp3", "stream")
+music:setLooping(true)
+music:play()
+
+
+function startupdate(dt)
+
+end
+
+
+function startdraw()
+
+  love.graphics.draw(start,0,0,0,1.4)
+end
+
+
+
+
+
+
+
+
+
+
+
+
+function gameload()
   obstacle = love.graphics.newImage("piranha.png")
   obstacle2 = love.graphics.newImage("Thwomp.png")
   obstacle3 = love.graphics.newImage("goomba.png")
@@ -34,7 +91,7 @@ function love.load()
   music:play()
 end
 
-function love.update()
+function gameupdate()
 
   if love.keyboard.isDown('right') then
     x = x + 14
@@ -124,7 +181,7 @@ end
 
 end
 
-function love.draw()
+function gamedraw()
 love.graphics.draw(background, 0, 0, 0, 1.35)
 love.graphics.print(health, - 1, 20)
 love.graphics.print("Health")
@@ -136,7 +193,7 @@ love.graphics.draw(obstacle3, o, g)
 love.graphics.print(score, 730, 25)
 love.graphics.print("Score", 740, 2)
 -- love.graphics.print(x, 200, 200)
-love.graphics.print("HP Recovered/Points Deducted", 250,1)
+love.graphics.print("            Points Deducted", 250,1)
 love.graphics.print(z,375,20)
 -- love.graphics.rectangle('line', a, s, 104, 108)
 -- love.graphics.rectangle('line', v, t, 97, 100)
@@ -161,6 +218,11 @@ then love.audio.pause()
 end
 if key == 'q'
 then music:play();
+end
+if key == 's' then
+  state = 'game'
+  love.audio.stop()
+  love.load()
 end
 
 end
