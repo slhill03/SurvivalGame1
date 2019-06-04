@@ -13,4 +13,4 @@
 [Atom](https://ide.atom.io/)
 
 ### Installation Help
-[How To Guide](https://love2d.org/wiki/Atom)
+[How To Guide (For LÖVE and Atom)](https://love2d.org/wiki/Atom)
