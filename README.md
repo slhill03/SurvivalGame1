@@ -9,3 +9,8 @@
 ### Made on the LÖVE engine.
 [LÖVE Website](https://love2d.org)
  
+### Recommended IDE
+[Atom](https://ide.atom.io/)
+
+### Installation Help
+[How To Guide](https://love2d.org/wiki/Atom)
