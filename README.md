@@ -5,3 +5,7 @@
 
 #### The Game Of Wits and Luck
 >Test your abilitys! Can you achieve a score above *15,000*? 
+
+### Made on the LÖVE engine.
+[LÖVE Website](https://love2d.org)
+ 
