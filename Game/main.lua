@@ -1,3 +1,4 @@
+--Made by Samuel Hill (@samuelshenk on Instagram)
 state = 'start'
 
 function love.load()
